@@ -1,0 +1,43 @@
+h1 {
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+#imgHover {
+  width: 100px;
+}
+#sub {
+  height: 20px;
+  width: 100px;
+  margin: 40px -50px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+}
+body {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background-color: linen;
+  background-image: url("images/background.jpg");
+  background-repeat: no-repeat;
+}
+summary {
+  font-style: oblique;
+  font-weight: bolder;
+}
+.mouseProp {
+  background-color: rgb(70, 48, 48);
+  font-weight: 700;
+  text-align: center;
+  height: 100px;
+  width: 400px;
+  color: lightcyan;
+}
+.exp {
+  background-color: lightsalmon;
+  font-weight: 700;
+  width: 600px;
+}
+
+#sub {
+  width: 80px;
+  height: 40px;
+}

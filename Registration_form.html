@@ -1,0 +1,169 @@
+<html>
+    <head>
+        <title>Registration form</title>
+        <link  rel="stylesheet" href="style_RegForm.css">
+    </head>
+    <style>
+        table,th,td{
+            border: 1px solid black;
+        }
+    </style>
+    <body>
+        <h1>User Registration form</h1>
+        <form action="welcomePage.html" onsubmit="return unamePWCheck()" action="style_RegForm.css">
+           <p style="size: 40;"> Enter User Name: </p>
+                
+            <input type="text"  id="uname" value="" placeholder="Enter here">
+            <lable id="usrLbl" style="color:red;visibility:hidden">Invalid Username</lable>   
+            <br>
+        
+            <p style="size: 40;">Enter Password:      </p>
+                   
+            <input type="password" id="password" value="" placeholder="Enter here">
+            <lable id="usrPw" style="color:red;visibility:hidden">Invalid Password</lable> 
+            <br>
+            <br>
+            <button id="Validate" onclick="unamePWCheck()">Click me to validate Uname and Password</button>
+            <br>
+            <br>
+            <br>
+            <hr>
+            <div id="table_content">
+                <td>
+                <table style="border:solid;background-color: springgreen;line-height: 40px;text-align: center;">
+                    <th>Student Name</th>
+                    <th>Student Roll No.</th>
+                    <th>Course Selected</th>
+                    <th>CheckMobileNumber_Label</th>
+                    <th>Mobile Number(Text box)</th>
+                    <tr>
+                        <td>Meena</td><td>1</td>
+                        <td><input type="radio" name="course" value="Java" onclick="selectedCourseAlert()">Java</input>
+                        <input type="radio" name="course" value="JS"  onclick="selectedCourseAlert()">JS</input>
+                        <input type="radio" name="course" value="Database" onclick="selectedCourseAlert()">Database</input></td>
+                        <td><lable id="mbl_lbl" style="color:red;visibility:hidden">Invalid Mobile Number</lable>  </td>
+                        <td><input type="text" id="mid1" name="mobile_number" onfocus ="mobile_number_chk()"></input></td>
+                    </tr>
+                    <tr>
+                        <td>Apoorva</td><td>2</td>
+                        <td><input type="radio" name="course_1" value="Java"  onclick="selectedCourseAlert()">Java</input>
+                            <input type="radio" name="course_1" value="JS"checked  onclick="selectedCourseAlert()">JS</input>
+                            <input type="radio" name="course_1" value="Database"  onclick="selectedCourseAlert()">Database</input></td>
+                            <td><lable id="mbl_lbl_2" style="color:red;visibility:hidden">Invalid Mobile Number</lable>  </td>
+                            <td><input type="text"id="mid2"  name="mobile_number" onfocus ="mobile_number_chk()"></input></td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <br>
+            <div class="mouseProp"> Hover at and hover out of the image
+                    <img id="imgHover" onmouseover="setNewImage()" onmouseout="setHoverOutImage()" src="Images/User_registration_Hover_Out.jpg" alt="User registration form">
+
+            </div>  
+            
+            <p class="exp">Please provide your expertize level in dropdown and check against the database</p>
+
+                <select id="selectLevel">
+                    <option value="0" selected disabled>Check here</option>
+                    <option value="Basic">Basic</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+                       
+            <button id="expertise" onclick="ExpertiseLevelAlert()">Expertise Level Check</button>
+            <br>
+            <button id="sub" type="submit" value="Submit" justify-content="center">Submit</button>
+            <summary>Double click on any of the sentences below to experience color change in the summary
+                <nav>
+                    <ul style="list-style-type: disc;" onclick="list_styling()">
+                        <li>This page is dedicated for getting User details</li>
+                        <li>Here we check if Username passwords are correct and correspondingly alert is displayed</li>
+                        <li>The Student details are captured in a table</li>
+                        <li>Verifying the expertize of the students registered</li>
+                    </ul>
+                </nav>
+            </summary>
+            <iframe width="420" height="315" src="https://youtube.com/embed/Giiz81_uzK8" alt="video_tech"></iframe>
+            
+        </form>
+        <script type="text/javascript">
+            function unamePWCheck(){
+                var usr_val=document.getElementById("uname").value;
+                var regx=/^E00/;//username should have this structure-anywhere in the string
+                //var regx=[sdp]imple;(OR)[a-z A-Z 0-9]00//i.e username should be tested for any word such as simple/dimple/pimple
+                //regx=new RegExp("E00","i");//object way of regular expression//i represents case insensitive
+                //trim is used to remove spaces in username/password
+                if(document.getElementById("uname").value.trim()==""||document.getElementById("password").value.trim()=="")
+                {
+                    alert("Neither Username nor Password should be blank");  
+                    return false;
+  
+                }
+                else if((document.getElementById("uname").value)==(document.getElementById("password")).value)
+                {
+                    alert("Username and Password are same");    
+                    password.style.border="solid 3px red";
+                    uname.style.border="solid 3px red";
+                    document.getElementById("usrLbl").style.visibility="visible";
+                    document.getElementById("usrLbl").innerHTML="Username and Password are same";
+                    return false;
+                    
+                }
+                
+                else if(regx.test(usr_val)==false){
+                    alert(" Username should start by E00");  
+                    document.getElementById("usrLbl").innerHTML="Username should have E00 format";
+                    document.getElementById("usrLbl").style.visibility="visible";
+                    return false;
+                }
+                else {
+                    if(document.getElementById("password").value.trim().length<5){
+                        alert("Password is too short");
+                        password.style.border="solid 3px red";
+                        document.getElementById("usrPw").innerHTML="Password should be more than 5 characters";
+                        document.getElementById("usrPw").style.visibility="visible";
+                        return false;
+                    }
+                    alert("Unique credentials!!! Congo!!")
+                    return true;
+                }
+            }
+            function mobile_number_chk(){
+                var regx_mbl_num=/[0-9]{10}/;
+                var mbl=document.getElementById("mid1").value;
+                if(regx_mbl_num.test(mbl)==false){
+                    //mbl.style="border: solid 3px red ";
+                    document.getElementById("mbl_lbl").innerHTML="Invalid Number";
+                    document.getElementById("mbl_lbl").style.visibility="visible";
+                    return false;
+                }
+                else
+                    return true;
+            }
+            function selectedCourseAlert(){
+                
+                var selected=document.getElementById("course_1");
+                alert("Your selected course is "+ selected);
+            }
+            function ExpertiseLevelAlert(){
+                var selected=document.getElementById("selectLevel");
+                alert("Your experience level is "+selected.options[selected.selectedIndex].value);
+            }
+            function list_styling(){//only using array index
+                var para_content=document.getElementsByTagName("li");
+                para_content[0].style="color:red";
+                para_content[1].style="color:blue";
+                for(var i=2;i<para_content.length;i++){
+                    para_content[i].style="color:green"; 
+                }
+            }
+            function setNewImage(){
+                document.getElementById("imgHover").src="Images/User_registration_On_Hover.png";
+            }
+            function setHoverOutImage(){
+                document.getElementById("imgHover").src="Images/User_registration_On_Hover_out.png";
+            }
+        </script>
+        
+    </body>
+</html>
